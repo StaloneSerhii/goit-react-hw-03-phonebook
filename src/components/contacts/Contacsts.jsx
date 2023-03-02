@@ -26,6 +26,5 @@ export const Contact = ({ dataContact, onDelete }) => {
 };
 
 Contact.propTypes = {
-  dataContact: propTypes.object.isRequired,
   onDelete: propTypes.func.isRequired,
 };

@@ -11,6 +11,20 @@ export class App extends Component {
     number: '',
     filter: '',
   };
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contact', JSON.stringify(this.state.contacts));
+    }
+  }
+
+  componentDidMount() {
+    const getContact = localStorage.getItem('contact');
+    const parseContact = JSON.parse(getContact);
+    if (parseContact !== null) {
+      this.setState({ contacts: parseContact });
+      return;
+    }
+  }
 
   addNamesContact = (name, number) => {
     const addCont = {
@@ -46,7 +60,9 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
+    const localClear = this.state.contacts.filter(contact => contact.id === id);
 
+    localStorage.removeItem(localClear[0].name);
     this.setState({ filter: '' });
   };
 
