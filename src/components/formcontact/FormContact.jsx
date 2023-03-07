@@ -19,7 +19,7 @@ export class FormContact extends Component {
 
     this.props.addNamesContact(name, number);
 
-    this.setState({ contacts: '', number: '' });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
